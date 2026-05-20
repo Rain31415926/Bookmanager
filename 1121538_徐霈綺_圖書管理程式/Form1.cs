@@ -52,27 +52,34 @@ namespace _1121538_徐霈綺_圖書管理程式
                 }
                 else
                 {
-                    // 產生空白(灰色)的大圖
+                    // 產生較美觀的預設大圖
                     Bitmap bmpLarge = new Bitmap(100, 140);
                     using (Graphics g = Graphics.FromImage(bmpLarge))
                     {
-                        g.Clear(Color.Gray);
-                        // 畫黃色垂直文字作為書籍封面示意
+                        // 提升繪製品質
+                        g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                        g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
+                        g.Clear(Color.SteelBlue); // 鋼藍色底
+
+                        // 將書名置中畫出白色的垂直字體
                         StringFormat format = new StringFormat();
                         format.FormatFlags = StringFormatFlags.DirectionVertical;
-                        using (Font f = new Font("微軟正黑體", 12))
-                        using (Brush b = new SolidBrush(Color.Yellow))
+                        format.Alignment = StringAlignment.Center;
+                        format.LineAlignment = StringAlignment.Center;
+
+                        using (Font f = new Font("微軟正黑體", 14, FontStyle.Bold))
+                        using (Brush b = new SolidBrush(Color.WhiteSmoke))
                         {
-                            g.DrawString(books[i], f, b, new RectangleF(70, 10, 30, 120), format);
+                            g.DrawString(books[i], f, b, new RectangleF(0, 0, 100, 140), format);
                         }
                     }
                     imgLarge.Images.Add(bmpLarge);
 
-                    // 產生空白(灰色)的小圖
+                    // 產生對應的小圖
                     Bitmap bmpSmall = new Bitmap(32, 32);
                     using (Graphics g = Graphics.FromImage(bmpSmall))
                     {
-                        g.Clear(Color.Gray);
+                        g.Clear(Color.SteelBlue);
                     }
                     imgSmall.Images.Add(bmpSmall);
                 }
@@ -99,6 +106,16 @@ namespace _1121538_徐霈綺_圖書管理程式
 
             // 預設為大圖示
             comboBoxView.SelectedIndex = 0;
+
+            // 稍微美化清單以及按鈕的視覺
+            listViewBooks.BackColor = Color.AliceBlue;
+            listBoxBorrowed.BackColor = Color.AliceBlue;
+
+            btnExport.BackColor = Color.SteelBlue;
+            btnExport.ForeColor = Color.WhiteSmoke;
+            btnExport.FlatStyle = FlatStyle.Flat;
+            btnExport.FlatAppearance.BorderSize = 0;
+            btnExport.Font = new Font("微軟正黑體", 12, FontStyle.Bold);
 
             // 借書事件 (雙擊加入清單)
             listViewBooks.DoubleClick += ListViewBooks_DoubleClick;
@@ -171,6 +188,11 @@ namespace _1121538_徐霈綺_圖書管理程式
                     }
                 }
             }
+        }
+
+        private void listViewBooks_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
