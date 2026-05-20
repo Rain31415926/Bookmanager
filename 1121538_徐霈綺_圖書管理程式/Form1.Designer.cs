@@ -35,6 +35,7 @@
             this.comboBoxView = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.listBoxBorrowed = new System.Windows.Forms.ListBox();
+            this.btnExport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -53,11 +54,12 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.btnExport);
             this.splitContainer1.Panel2.Controls.Add(this.listBoxBorrowed);
             this.splitContainer1.Panel2.Controls.Add(this.label2);
             this.splitContainer1.Panel2.Controls.Add(this.comboBoxView);
             this.splitContainer1.Panel2.Controls.Add(this.label1);
-            this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(10);
+            this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(10, 10, 10, 40);
             this.splitContainer1.Size = new System.Drawing.Size(850, 550);
             this.splitContainer1.SplitterDistance = 600;
             this.splitContainer1.TabIndex = 0;
@@ -116,8 +118,20 @@
             this.listBoxBorrowed.ItemHeight = 20;
             this.listBoxBorrowed.Location = new System.Drawing.Point(17, 118);
             this.listBoxBorrowed.Name = "listBoxBorrowed";
-            this.listBoxBorrowed.Size = new System.Drawing.Size(210, 404);
+            this.listBoxBorrowed.Size = new System.Drawing.Size(210, 364);
             this.listBoxBorrowed.TabIndex = 3;
+            // 
+            // btnExport
+            // 
+            this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnExport.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.btnExport.Location = new System.Drawing.Point(17, 498);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(210, 36);
+            this.btnExport.TabIndex = 4;
+            this.btnExport.Text = "輸出借書清單";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // Form1
             // 
@@ -145,6 +159,7 @@
         private System.Windows.Forms.ComboBox comboBoxView;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ListBox listBoxBorrowed;
+        private System.Windows.Forms.Button btnExport;
     }
 }
 

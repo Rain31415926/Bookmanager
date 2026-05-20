@@ -134,5 +134,43 @@ namespace _1121538_徐霈綺_圖書管理程式
                     break;
             }
         }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            if (listBoxBorrowed.Items.Count == 0)
+            {
+                MessageBox.Show("借書清單為空，沒有可以輸出的內容。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                sfd.Filter = "文字檔 (*.txt)|*.txt|所有檔案 (*.*)|*.*";
+                sfd.Title = "儲存借書清單";
+                sfd.FileName = "借書清單.txt";
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        using (System.IO.StreamWriter sw = new System.IO.StreamWriter(sfd.FileName, false, System.Text.Encoding.UTF8))
+                        {
+                            sw.WriteLine("--- 借書清單 ---");
+                            sw.WriteLine($"匯出時間：{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}");
+                            sw.WriteLine("----------------");
+                            foreach (var item in listBoxBorrowed.Items)
+                            {
+                                sw.WriteLine(item.ToString());
+                            }
+                        }
+                        MessageBox.Show("匯出成功！", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("匯出失敗：" + ex.Message, "錯誤", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
     }
 }
